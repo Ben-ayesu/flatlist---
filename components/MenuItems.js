@@ -36,13 +36,19 @@ const Item = ({ name, price }) => (
 const MenuItems = () => {
     const renderItem = ({ item }) => <Item name={item.name} price={item.price} />;
 
+    const Seperator = () => <View style={menuStyles.seperator} />
+
+    const Header = () => <Text style={menuStyles.headerText}>View Menu</Text>
+
     return (
         <View style={menuStyles.container}>
-            <Text style={menuStyles.headerText}>View Menu</Text>
             <FlatList
                 data={menuItemsToDisplay}
                 keyExtractor={(item) => item.id}
-                renderItem={renderItem}></FlatList>
+                renderItem={renderItem}
+                ItemSeparatorComponent={Seperator}
+                ListHeaderComponent={Header}
+            />
         </View>
     );
 };
@@ -51,6 +57,10 @@ const MenuItems = () => {
 const menuStyles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    seperator: {
+        borderBottomWidth: 1,
+        borderColor: '#EDEFEE'
     },
     innerContainer: {
         paddingHorizontal: 40,
